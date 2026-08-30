@@ -1,0 +1,1 @@
+import{o as e}from"./useStore-CP8wJgJA.js";import{i as t}from"./store-BEC0ZYJn.js";var n=e();function r({character:e,className:r,sizes:i=`160px`}){return(0,n.jsx)(`img`,{src:e.portraitUrl,alt:e.name,sizes:i,className:t(`h-full w-full object-cover object-top`,r)})}export{r as t};

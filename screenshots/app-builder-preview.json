@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ember Tome",
+      "hasCanvas": false,
+      "bodyTextLen": 431,
+      "bodyTextHash": "6236ceb8b8fab659bec8eee4f5a585202f6a7c2eeae0a448307b0caef135d63d",
+      "bodyTextPrefix": "Ember Tome New campaign THE CINDER MARCHES The Ashen Crown A cra",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ember Tome",
+      "hasCanvas": false,
+      "bodyTextLen": 431,
+      "bodyTextHash": "6236ceb8b8fab659bec8eee4f5a585202f6a7c2eeae0a448307b0caef135d63d",
+      "bodyTextPrefix": "Ember Tome New campaign THE CINDER MARCHES The Ashen Crown A cra",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
