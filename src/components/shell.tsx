@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { BookOpen, MapPin, Mic, Users } from "lucide-react";
+import { BookOpen, MapPin, PenLine, Users } from "lucide-react";
 import { Wordmark } from "@/components/wordmark";
 import { cn } from "@/lib/utils";
 
@@ -36,8 +36,8 @@ export function CampaignShell({
     },
     {
       to: "/tome/$campaignId/record" as const,
-      label: "Record",
-      icon: Mic,
+      label: "Tonight",
+      icon: PenLine,
       match: (p: string) => p.startsWith(`/tome/${campaignId}/record`),
     },
   ];

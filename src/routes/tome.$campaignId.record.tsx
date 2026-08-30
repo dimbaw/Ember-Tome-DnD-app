@@ -187,7 +187,7 @@ function RecordPage() {
   return (
     <div className="mx-auto max-w-xl">
       <p className="text-xs tracking-[0.22em] text-muted uppercase">The table is listening</p>
-      <h1 className="mt-2 font-display text-4xl">Record a session</h1>
+      <h1 className="mt-2 font-display text-4xl">Write tonight's session</h1>
       <p className="mt-3 text-sm leading-relaxed text-muted">
         Bring the night however it exists: a recording, a PDF, a map photo, a character sheet, pasted notes.
         The chronicler reads it and binds what it finds — faces, places, and what turned.

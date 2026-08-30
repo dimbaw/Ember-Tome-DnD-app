@@ -11,6 +11,8 @@ import type {
 } from "./types";
 
 type Actions = {
+  hasOpenedTome: boolean;
+  markTomeOpened: () => void;
   hydrateIfEmpty: () => void;
   resetToSeed: () => void;
   addCampaign: (campaign: Campaign) => void;
@@ -33,6 +35,8 @@ export const useTome = create<TomeState & Actions>()(
   persist(
     (set, get) => ({
       ...SEED,
+      hasOpenedTome: false,
+      markTomeOpened: () => set({ hasOpenedTome: true }),
       hydrateIfEmpty: () => {
         if (get().campaigns.length === 0) set({ ...SEED });
       },
@@ -114,14 +118,16 @@ export const useTome = create<TomeState & Actions>()(
         sessions: s.sessions,
         scenes: s.scenes,
         locations: s.locations,
+        hasOpenedTome: s.hasOpenedTome,
       }),
       merge: (persisted, current) => {
-        const p = persisted as Partial<TomeState>;
+        const p = persisted as Partial<TomeState> & { hasOpenedTome?: boolean };
         return {
           ...current,
           ...p,
           locations:
             p.locations && p.locations.length > 0 ? p.locations : current.locations,
+          hasOpenedTome: Boolean(p.hasOpenedTome),
         };
       },
     },

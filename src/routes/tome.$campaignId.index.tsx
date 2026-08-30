@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mic, Pencil } from "lucide-react";
+import { PenLine, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,8 +60,8 @@ function Chronicle() {
           </Button>
           <Button asChild>
             <Link to="/tome/$campaignId/record" params={{ campaignId }}>
-              <Mic className="size-4" />
-              Record a session
+              <PenLine className="size-4" />
+              Log tonight
             </Link>
           </Button>
         </div>
@@ -302,12 +302,12 @@ function EmptyChronicle({ campaignId }: { campaignId: string }) {
     <div className="mt-16 max-w-lg rounded-xl bg-surface p-6 shadow-[var(--shadow-border)]">
       <h2 className="font-display text-2xl">The pages are still blank</h2>
       <p className="mt-3 text-sm leading-relaxed text-muted">
-        Record the next night at the table, or paste the session notes. Faces that
+        Write what happened tonight, or bring a recording, a PDF, a map. Faces that
         already live in this tome will be drawn the same way again.
       </p>
       <Button asChild className="mt-6">
         <Link to="/tome/$campaignId/record" params={{ campaignId }}>
-          Record a session
+          Log tonight
         </Link>
       </Button>
     </div>

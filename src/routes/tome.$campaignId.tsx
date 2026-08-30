@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { CampaignShell } from "@/components/shell";
 import { useTome } from "@/lib/store";
@@ -9,6 +10,11 @@ export const Route = createFileRoute("/tome/$campaignId")({
 function CampaignLayout() {
   const { campaignId } = Route.useParams();
   const campaign = useTome((s) => s.campaigns.find((c) => c.id === campaignId));
+  const markTomeOpened = useTome((s) => s.markTomeOpened);
+
+  useEffect(() => {
+    if (campaign) markTomeOpened();
+  }, [campaign, markTomeOpened]);
 
   if (!campaign) {
     return (

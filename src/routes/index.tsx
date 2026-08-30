@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BookOpen, Mic, Plus } from "lucide-react";
+import { BookOpen, PenLine, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/wordmark";
 import { Portrait } from "@/components/portrait";
@@ -8,11 +8,16 @@ import { formatPlayed } from "@/lib/ids";
 
 export const Route = createFileRoute("/")({ component: Home });
 
+function firstName(name: string) {
+  return name.split(/\s+/)[0] ?? name;
+}
+
 function Home() {
   const campaigns = useTome((s) => s.campaigns);
   const characters = useTome((s) => s.characters);
   const sessions = useTome((s) => s.sessions);
   const scenes = useTome((s) => s.scenes);
+  const hasOpenedTome = useTome((s) => s.hasOpenedTome);
   const featured = campaigns[0];
   const party = featured
     ? characters.filter((c) => c.campaignId === featured.id && c.kind === "pc")
@@ -26,12 +31,16 @@ function Home() {
       <header className="absolute inset-x-0 top-0 z-20">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <Wordmark />
-          <Button asChild variant="outline" size="sm">
-            <Link to="/new">
-              <Plus className="size-4" />
-              New campaign
-            </Link>
-          </Button>
+          {hasOpenedTome ? (
+            <Button asChild variant="outline" size="sm">
+              <Link to="/new">
+                <Plus className="size-4" />
+                New campaign
+              </Link>
+            </Button>
+          ) : (
+            <span />
+          )}
         </div>
       </header>
 
@@ -45,13 +54,16 @@ function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/20" />
           <div className="relative mx-auto flex min-h-dvh max-w-6xl flex-col justify-end px-4 pb-24 pt-24">
             <p className="text-xs tracking-[0.22em] text-muted uppercase">
-              {featured.world}
+              Setting · {featured.world}
             </p>
             <h1 className="mt-2 max-w-3xl font-display text-4xl leading-tight tracking-tight text-fg sm:text-5xl">
               {featured.name}
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
               {featured.premise}
+            </p>
+            <p className="mt-3 max-w-xl text-sm text-muted">
+              Your campaign book — ready to run tonight.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -62,25 +74,24 @@ function Home() {
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/tome/$campaignId/record" params={{ campaignId: featured.id }}>
-                  <Mic className="size-4" />
-                  Record a session
+                  <PenLine className="size-4" />
+                  Log tonight
                 </Link>
               </Button>
             </div>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <div className="flex -space-x-3">
+            <div className="mt-6 flex flex-wrap items-end gap-4">
+              <div className="flex gap-3">
                 {party.map((c) => (
-                  <div
-                    key={c.id}
-                    className="size-11 overflow-hidden rounded-full ring-2 ring-bg"
-                    title={c.name}
-                  >
-                    <Portrait character={c} sizes="44px" />
+                  <div key={c.id} className="w-12 text-center sm:w-14">
+                    <div className="mx-auto size-11 overflow-hidden rounded-full ring-2 ring-bg">
+                      <Portrait character={c} sizes="44px" />
+                    </div>
+                    <p className="mt-1 truncate text-xs text-muted">{firstName(c.name)}</p>
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-muted">
-                {party.length} in the party · {featuredSessions.length} sessions bound
+              <p className="pb-0.5 text-sm text-muted">
+                {featuredSessions.length} nights logged
               </p>
             </div>
           </div>
@@ -151,7 +162,7 @@ function EmptyHome() {
     <main className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-4">
       <h1 className="font-display text-4xl">A table, remembered</h1>
       <p className="mt-4 text-muted leading-relaxed">
-        Record a session. Ember Tome listens, keeps the faces straight, and paints
+        Write what happened. Ember Tome keeps the faces straight, and paints
         what happened so the campaign has somewhere to live after the dice stop.
       </p>
       <Button asChild className="mt-8" size="lg">
